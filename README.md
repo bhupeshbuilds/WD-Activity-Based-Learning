@@ -9,6 +9,6 @@
 
 | S.No | Case Study Title | 
 | :---: | :--- | 
-| 1 | [Examination Answer Evaluation] 
-| 2 | [Fuel Consumption and Route Comparison] 
-| 3 | [Mobile Plan Cost Comparison] 
+| 1 | [Digital Libarary Management Interface] 
+| 2 | [Electronic Stores Website] 
+| 3 | [Student Academic Dashboard] 
