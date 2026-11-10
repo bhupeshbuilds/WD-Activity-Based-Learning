@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Academic Portal &mdash; First Year</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #121212;
+        --elevated: #141414;
+        --surface-border: #242424;
+        --border-subtle: #1c1c1c;
+        --text: #fff9ea;
+        --muted: #949088;
+        --white: #ffffff;
+        --black: #000000;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --s-4: 4px;
+        --s-8: 8px;
+        --s-12: 12px;
+        --s-20: 20px;
+        --s-40: 40px;
+        --s-80: 80px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.4;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1 {
+        font-family: "Spectral", serif;
+        font-size: 36px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -1.44px;
+        color: var(--text);
+      }
+      h2 {
+        font-family: "Spectral", serif;
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: var(--text);
+        margin-bottom: var(--s-12);
+      }
+      p,
+      span,
+      td,
+      th {
+        font-size: 18px;
+        font-weight: 300;
+        color: var(--text);
+      }
+      .caption {
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+      }
+      .dashboard-layout {
+        display: flex;
+        min-height: 100vh;
+        width: 100%;
+      }
+      .sidebar {
+        width: 260px;
+        background-color: var(--elevated);
+        border-right: 1px solid var(--surface-border);
+        padding: var(--s-40) var(--s-20);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-shrink: 0;
+        z-index: 10000;
+      }
+      .brand-title {
+        font-family: "Spectral", serif;
+        font-size: 22px;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: var(--white);
+        margin-bottom: var(--s-40);
+      }
+      .nav-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-8);
+      }
+      .nav-item a {
+        display: block;
+        color: var(--muted);
+        text-decoration: none;
+        padding: var(--s-8) var(--s-12);
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        transition:
+          color 0.15s ease,
+          background-color 0.15s ease;
+      }
+      .nav-item a:hover {
+        color: var(--text);
+        background-color: var(--surface-border);
+      }
+      .nav-item.active a {
+        color: var(--black);
+        background-color: var(--white);
+        font-weight: 600;
+      }
+      .student-badge {
+        border-top: 1px solid var(--surface-border);
+        padding-top: var(--s-20);
+        margin-top: var(--s-40);
+      }
+      .student-badge .name {
+        font-size: 14px;
+        color: var(--text);
+        font-weight: 400;
+      }
+      .student-badge .id {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .main-viewport {
+        flex: 1;
+        padding: var(--s-40) var(--s-80);
+        overflow-y: auto;
+        display: flex;
+        justify-content: center;
+      }
+      .content-constraint {
+        width: 100%;
+        max-width: 688px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-40);
+      }
+      .header-block {
+        border-bottom: 1px solid var(--surface-border);
+        padding-bottom: var(--s-20);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .card {
+        background-color: var(--elevated);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+      }
+      .meta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--s-12) var(--s-20);
+        margin-top: var(--s-12);
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+      }
+      .meta-label {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .meta-value {
+        font-size: 18px;
+        color: var(--text);
+      }
+      .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: var(--s-12);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+      th {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: var(--muted);
+        letter-spacing: 0.5px;
+        padding: var(--s-8) var(--s-12);
+        border-bottom: 1px solid var(--surface-border);
+      }
+      td {
+        font-size: 14px;
+        padding: var(--s-12);
+        border-bottom: 1px solid var(--border-subtle);
+        color: var(--text);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      .numeric {
+        text-align: right;
+      }
+      .progress-track {
+        width: 100%;
+        height: 6px;
+        background-color: var(--border-subtle);
+        border-radius: var(--radius-sm);
+        margin-top: var(--s-4);
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background-color: var(--white);
+      }
+      .attendance-row {
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-4);
+        padding: var(--s-8) 0;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .attendance-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .attendance-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+      .announcement-item {
+        padding: var(--s-12) 0;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .announcement-item:first-child {
+        padding-top: 0;
+      }
+      .announcement-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .announcement-title {
+        font-size: 16px;
+        color: var(--text);
+        font-weight: 400;
+        margin-bottom: var(--s-4);
+      }
+      .announcement-body {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .action-btn {
+        display: inline-block;
+        background-color: var(--black);
+        color: var(--white);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: none;
+      }
+      .action-btn:focus,
+      input:focus {
+        outline: none;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px inset;
+        border-color: var(--white);
+      }
+      @media (max-width: 1199px) {
+        .main-viewport {
+          padding: var(--s-40);
+        }
+      }
+      @media (max-width: 809px) {
+        .dashboard-layout {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--surface-border);
+          padding: var(--s-20);
+        }
+        .main-viewport {
+          padding: var(--s-20);
+        }
+        .meta-grid {
+          grid-template-columns: 1fr;
+        }
+        .header-block {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--s-12);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-title">Academics &mdash; Yr 1</div>
+          <ul class="nav-list">
+            <li class="nav-item active"><a href="#profile">Overview</a></li>
+            <li class="nav-item"><a href="#results">Semester Results</a></li>
+            <li class="nav-item"><a href="#attendance">Attendance</a></li>
+            <li class="nav-item"><a href="#schedule">Exam Schedule</a></li>
+            <li class="nav-item"><a href="#announcements">Announcements</a></li>
+          </ul>
+        </div>
+        <div class="student-badge">
+          <div class="name">Elena Rostova</div>
+          <div class="id">ID: 2026-CS-0142</div>
+          <div class="caption" style="margin-top: 4px">Term: Freshman Year</div>
+        </div>
+      </aside>
+      <main class="main-viewport">
+        <div class="content-constraint">
+          <header class="header-block">
+            <div>
+              <span class="caption">Academic Portal</span>
+              <h1>Overview</h1>
+            </div>
+            <span class="caption">AY 2026&ndash;2027</span>
+          </header>
+          <section id="profile" class="card">
+            <span class="caption">Student Details</span>
+            <h2>Enrollment Record</h2>
+            <div class="meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">Full Name</span>
+                <span class="meta-value">Elena Rostova</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Program</span>
+                <span class="meta-value">B.Sc. Computer Science</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Level</span>
+                <span class="meta-value">Freshman (Year 1, Sem 1)</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Advisor</span>
+                <span class="meta-value">Dr. Marcus Vance</span>
+              </div>
+            </div>
+          </section>
+          <section id="results" class="card">
+            <span class="caption">Performance</span>
+            <h2>Semester 1 Results</h2>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Course Title</th>
+                    <th class="numeric">Credits</th>
+                    <th class="numeric">Grade</th>
+                    <th class="numeric">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS101</td>
+                    <td>Intro to Programming</td>
+                    <td class="numeric">4</td>
+                    <td class="numeric">A</td>
+                    <td class="numeric">4.0</td>
+                  </tr>
+                  <tr>
+                    <td>MA111</td>
+                    <td>Calculus & Analytical Geom.</td>
+                    <td class="numeric">4</td>
+                    <td class="numeric">A-</td>
+                    <td class="numeric">3.7</td>
+                  </tr>
+                  <tr>
+                    <td>PH102</td>
+                    <td>Classical Mechanics</td>
+                    <td class="numeric">3</td>
+                    <td class="numeric">B+</td>
+                    <td class="numeric">3.3</td>
+                  </tr>
+                  <tr>
+                    <td>EN105</td>
+                    <td>Technical Writing</td>
+                    <td class="numeric">3</td>
+                    <td class="numeric">A</td>
+                    <td class="numeric">4.0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section id="attendance" class="card">
+            <span class="caption">Presence</span>
+            <h2>Subject Attendance</h2>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 12px;
+              "
+            >
+              <div class="attendance-row">
+                <div class="attendance-meta">
+                  <span>CS101 &mdash; Intro to Programming</span>
+                  <span>94%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 94%"></div>
+                </div>
+              </div>
+              <div class="attendance-row">
+                <div class="attendance-meta">
+                  <span>MA111 &mdash; Calculus & Geom.</span>
+                  <span>88%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="attendance-row">
+                <div class="attendance-meta">
+                  <span>PH102 &mdash; Classical Mechanics</span>
+                  <span>78%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 78%"></div>
+                </div>
+              </div>
+              <div class="attendance-row">
+                <div class="attendance-meta">
+                  <span>EN105 &mdash; Technical Writing</span>
+                  <span>96%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 96%"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="schedule" class="card">
+            <span class="caption">Evaluations</span>
+            <h2>Mid-Term Examination Schedule</h2>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Code</th>
+                    <th>Location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Nov 24, 2026</td>
+                    <td>09:00 - 11:00</td>
+                    <td>CS101</td>
+                    <td>Hall A-12</td>
+                  </tr>
+                  <tr>
+                    <td>Nov 26, 2026</td>
+                    <td>13:00 - 15:00</td>
+                    <td>MA111</td>
+                    <td>Hall C-04</td>
+                  </tr>
+                  <tr>
+                    <td>Nov 28, 2026</td>
+                    <td>09:00 - 11:00</td>
+                    <td>PH102</td>
+                    <td>Science Center 2</td>
+                  </tr>
+                  <tr>
+                    <td>Dec 02, 2026</td>
+                    <td>11:30 - 13:00</td>
+                    <td>EN105</td>
+                    <td>Seminar Hall 1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section id="announcements" class="card">
+            <span class="caption">Bulletins</span>
+            <h2>First Year Announcements</h2>
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+              "
+            >
+              <div class="announcement-item">
+                <div class="announcement-title">
+                  Library ID card verification deadline
+                </div>
+                <div class="announcement-body">
+                  First-year students must validate barcode access at the
+                  central circulation counter by November 18.
+                </div>
+              </div>
+              <div class="announcement-item">
+                <div class="announcement-title">
+                  Peer Tutoring Program for Calculus I
+                </div>
+                <div class="announcement-body">
+                  Drop-in office hours have begun in Room 204 on Tuesdays and
+                  Thursdays at 16:00.
+                </div>
+              </div>
+              <div class="announcement-item">
+                <div class="announcement-title">
+                  Freshman Engineering & Computing Workshop
+                </div>
+                <div class="announcement-body">
+                  Registrations for the weekend microcontroller fundamentals
+                  clinic close this Friday.
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

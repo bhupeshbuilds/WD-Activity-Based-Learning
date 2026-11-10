@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulse Electronics &mdash; Catalog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #eb001a;
+        --accent: #bc0015;
+        --surface: #ffffff;
+        --elevated: #f4f4f4;
+        --text: #000000;
+        --muted: #51595f;
+        --border: #e5e5e5;
+        --grad-hero: linear-gradient(180deg, #ffffff 0%, #e9e9e9 100%);
+        --font-stack:
+          "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        --lh-tight: 1.1;
+        --s-8: 8px;
+        --s-12: 12px;
+        --s-16: 16px;
+        --s-20: 20px;
+        --s-24: 24px;
+        --s-28: 28px;
+        --s-36: 36px;
+        --s-40: 40px;
+        --s-48: 48px;
+        --s-52: 52px;
+        --radius-input: 6px;
+        --radius-card: 12px;
+        --radius-pill: 9999px;
+        --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+        --transition-med: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--surface);
+        color: var(--text);
+        font-family: var(--font-stack);
+        font-size: 15.84px;
+        line-height: 1.4;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1 {
+        font-size: clamp(48px, 8vw, 95px);
+        font-weight: 800;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+      }
+      h2 {
+        font-size: clamp(36px, 5vw, 63.375px);
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+      h3 {
+        font-size: 28.16px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+      .caption {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .top-nav {
+        position: sticky;
+        top: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--s-16) var(--s-28);
+        z-index: 10000;
+      }
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--s-8);
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .brand-mark {
+        width: 14px;
+        height: 14px;
+        background: var(--primary);
+        border-radius: 2px;
+        transform: rotate(45deg);
+      }
+      .nav-search {
+        position: relative;
+        flex: 0 1 360px;
+        margin: 0 var(--s-20);
+      }
+      .nav-search input {
+        width: 100%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-input);
+        padding: var(--s-8) var(--s-12);
+        font-size: 14px;
+        font-family: inherit;
+        color: var(--text);
+        transition: border-color var(--transition-fast);
+      }
+      .nav-search input:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--s-12);
+      }
+      .btn-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--muted);
+        color: var(--surface);
+        border-radius: var(--radius-pill);
+        padding: 14.08px 28.16px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color var(--transition-fast);
+      }
+      .btn-pill:hover {
+        background-color: var(--text);
+      }
+      .btn-primary {
+        background-color: var(--primary);
+      }
+      .btn-primary:hover {
+        background-color: var(--accent);
+      }
+      .hero-banner {
+        background: var(--grad-hero);
+        padding: var(--s-52) var(--s-28) var(--s-48);
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-20);
+      }
+      .hero-headline {
+        max-width: 850px;
+      }
+      .hero-headline span {
+        color: var(--primary);
+      }
+      .hero-tag {
+        display: inline-block;
+        align-self: flex-start;
+        background: var(--text);
+        color: var(--surface);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px var(--s-8);
+        border-radius: var(--radius-input);
+      }
+      .catalog-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--s-36) var(--s-28);
+      }
+      .filter-ctrl {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .filter-toolbar {
+        display: flex;
+        align-items: center;
+        gap: var(--s-8);
+        padding-bottom: var(--s-28);
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+      }
+      .filter-label {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        padding: var(--s-8) var(--s-20);
+        border-radius: var(--radius-pill);
+        background: var(--elevated);
+        color: var(--muted);
+        white-space: nowrap;
+        transition: all var(--transition-fast);
+        user-select: none;
+      }
+      .filter-label:hover {
+        color: var(--text);
+      }
+      #tab-all:checked ~ .filter-toolbar label[for="tab-all"],
+      #tab-laptops:checked ~ .filter-toolbar label[for="tab-laptops"],
+      #tab-phones:checked ~ .filter-toolbar label[for="tab-phones"],
+      #tab-smart:checked ~ .filter-toolbar label[for="tab-smart"],
+      #tab-accessories:checked ~ .filter-toolbar label[for="tab-accessories"] {
+        background: var(--primary);
+        color: var(--surface);
+      }
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 11px;
+        margin-top: var(--s-28);
+      }
+      #tab-laptops:checked ~ .product-grid .card-product:not(.type-laptop),
+      #tab-phones:checked ~ .product-grid .card-product:not(.type-phone),
+      #tab-smart:checked ~ .product-grid .card-product:not(.type-smart),
+      #tab-accessories:checked ~ .product-grid .card-product:not(.type-acc) {
+        display: none;
+      }
+      .card-product {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-card);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        transition: border-color var(--transition-fast);
+      }
+      .card-product:hover {
+        border-color: var(--text);
+      }
+      .card-badge {
+        position: absolute;
+        top: var(--s-16);
+        right: var(--s-16);
+        background: var(--primary);
+        color: var(--surface);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 2px var(--s-8);
+        border-radius: var(--radius-pill);
+      }
+      .badge-subtle {
+        background: var(--elevated);
+        color: var(--text);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 4px;
+        align-self: flex-start;
+        margin-bottom: var(--s-8);
+      }
+      .product-preview {
+        width: 100%;
+        height: 140px;
+        background: var(--elevated);
+        border-radius: var(--radius-input);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--s-16);
+      }
+      .product-preview svg {
+        width: 64px;
+        height: 64px;
+        stroke: var(--muted);
+        stroke-width: 1.5;
+        fill: none;
+      }
+      .product-info h3 {
+        font-size: 20px;
+        margin-bottom: var(--s-8);
+      }
+      .spec-list {
+        list-style: none;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: var(--s-16);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .price-block {
+        display: flex;
+        align-items: baseline;
+        gap: var(--s-8);
+        margin-bottom: var(--s-16);
+      }
+      .price-current {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+      .price-old {
+        font-size: 14px;
+        color: var(--muted);
+        text-decoration: line-through;
+      }
+      .spotlight-section {
+        background: var(--elevated);
+        border-radius: var(--radius-card);
+        padding: var(--s-40) var(--s-28);
+        margin-top: var(--s-52);
+        border: 1px solid var(--border);
+      }
+      .detail-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--s-40);
+        align-items: center;
+      }
+      .detail-img-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-card);
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .detail-img-box svg {
+        width: 140px;
+        height: 140px;
+        stroke: var(--text);
+        stroke-width: 1.2;
+        fill: none;
+      }
+      .detail-specs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+        margin: var(--s-20) 0;
+      }
+      .spec-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-input);
+        padding: var(--s-12);
+      }
+      .spec-box .k {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .spec-box .v {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text);
+        margin-top: 2px;
+      }
+      .section-header {
+        margin-top: var(--s-52);
+        margin-bottom: var(--s-24);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .comparison-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-card);
+        background: var(--surface);
+      }
+      table.comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 14px;
+      }
+      table.comparison-table th,
+      table.comparison-table td {
+        padding: var(--s-16) var(--s-20);
+        border-bottom: 1px solid var(--border);
+        vertical-align: middle;
+      }
+      table.comparison-table th {
+        background: var(--elevated);
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      table.comparison-table tr:last-child td {
+        border-bottom: none;
+      }
+      .table-product-title {
+        font-weight: 700;
+        color: var(--text);
+      }
+      .check-yes {
+        color: var(--primary);
+        font-weight: 800;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        margin-top: var(--s-52);
+        padding: var(--s-40) var(--s-28);
+        background: var(--surface);
+      }
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: gap;
+        gap: var(--s-20);
+      }
+      @media (max-width: 809px) {
+        .detail-layout {
+          grid-template-columns: 1fr;
+        }
+        .detail-img-box {
+          height: 240px;
+        }
+        .nav-search {
+          display: none;
+        }
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-nav">
+      <a href="#" class="brand-logo">
+        <div class="brand-mark"></div>
+        PULSE
+      </a>
+      <div class="nav-search">
+        <input
+          type="text"
+          placeholder="Search devices, accessories, specs..."
+        />
+      </div>
+      <div class="nav-actions">
+        <a href="#comparison" class="btn-pill" style="padding: 8px 16px"
+          >Compare</a
+        >
+        <a
+          href="#catalog"
+          class="btn-pill btn-primary"
+          style="padding: 8px 16px"
+          >Browse</a
+        >
+      </div>
+    </header>
+    <section class="hero-banner">
+      <div class="hero-inner">
+        <div class="hero-tag">2026 Hardware Release</div>
+        <h1 class="hero-headline">
+          High precision silicon. <br /><span>Zero hesitation.</span>
+        </h1>
+        <p style="max-width: 540px; color: var(--muted)">
+          Explore high-performance laptops, mobile computers, and studio
+          peripherals engineered with unified architecture and maximum thermal
+          efficiency.
+        </p>
+        <div style="margin-top: var(--s-8)">
+          <a href="#catalog" class="btn-pill btn-primary">View New Arrivals</a>
+        </div>
+      </div>
+    </section>
+    <main class="catalog-wrapper" id="catalog">
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="tab-all"
+        class="filter-ctrl"
+        checked
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="tab-laptops"
+        class="filter-ctrl"
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="tab-phones"
+        class="filter-ctrl"
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="tab-smart"
+        class="filter-ctrl"
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="tab-accessories"
+        class="filter-ctrl"
+      />
+      <div class="filter-toolbar">
+        <label for="tab-all" class="filter-label">All Devices (6)</label>
+        <label for="tab-laptops" class="filter-label">Laptops</label>
+        <label for="tab-phones" class="filter-label">Smartphones</label>
+        <label for="tab-smart" class="filter-label">Smart Devices</label>
+        <label for="tab-accessories" class="filter-label">Accessories</label>
+      </div>
+      <div class="product-grid">
+        <article class="card-product type-laptop">
+          <span class="card-badge">-15% OFF</span>
+          <div>
+            <span class="badge-subtle">Computing</span>
+            <div class="product-preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="12" rx="1" />
+                <path d="M2 19h20M9 16v3m6-3v3" />
+              </svg>
+            </div>
+            <h3>AeroBook Pro 16</h3>
+            <ul class="spec-list">
+              <li>12-Core Core Ultra 7</li>
+              <li>32GB LPDDR5X RAM</li>
+              <li>1TB PCIe 4.0 SSD</li>
+              <li>120Hz OLED 2.8K</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-block">
+              <span class="price-current">$1,449</span>
+              <span class="price-old">$1,699</span>
+            </div>
+            <a href="#featured-detail" class="btn-pill" style="width: 100%"
+              >View Details</a
+            >
+          </div>
+        </article>
+        <article class="card-product type-phone">
+          <span class="card-badge">HOT</span>
+          <div>
+            <span class="badge-subtle">Mobile</span>
+            <div class="product-preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="7" y="2" width="10" height="20" rx="2" />
+                <circle cx="12" cy="18" r="1" />
+              </svg>
+            </div>
+            <h3>Vanguard Phone 5</h3>
+            <ul class="spec-list">
+              <li>Snapdragon 8 Gen 4</li>
+              <li>50MP Tri-Sensor Cam</li>
+              <li>5400 mAh Cell</li>
+              <li>6.7" LTPO 1-120Hz</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-block">
+              <span class="price-current">$899</span>
+              <span class="price-old">$999</span>
+            </div>
+            <a href="#comparison" class="btn-pill" style="width: 100%"
+              >View Details</a
+            >
+          </div>
+        </article>
+        <article class="card-product type-smart">
+          <div>
+            <span class="badge-subtle">Wearable</span>
+            <div class="product-preview">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="7" />
+                <path d="M12 9v3l2 2M9 2h6M9 22h6" />
+              </svg>
+            </div>
+            <h3>Chronos Watch S</h3>
+            <ul class="spec-list">
+              <li>Sapphire Crystal Glass</li>
+              <li>Bio-Kinetic Sensor array</li>
+              <li>Up to 7-Day Battery</li>
+              <li>Titanium Grade 5 Frame</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-block">
+              <span class="price-current">$349</span>
+            </div>
+            <a href="#comparison" class="btn-pill" style="width: 100%"
+              >View Details</a
+            >
+          </div>
+        </article>
+        <article class="card-product type-laptop">
+          <span class="card-badge">-20% OFF</span>
+          <div>
+            <span class="badge-subtle">Computing</span>
+            <div class="product-preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="12" rx="1" />
+                <path d="M2 19h20" />
+              </svg>
+            </div>
+            <h3>Zenith Studio 14</h3>
+            <ul class="spec-list">
+              <li>8-Core High-Efficiency</li>
+              <li>16GB Unified Memory</li>
+              <li>512GB NVMe SSD</li>
+              <li>1.18kg Ultra-Slim Body</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-block">
+              <span class="price-current">$999</span>
+              <span class="price-old">$1,249</span>
+            </div>
+            <a href="#featured-detail" class="btn-pill" style="width: 100%"
+              >View Details</a
+            >
+          </div>
+        </article>
+        <article class="card-product type-acc">
+          <div>
+            <span class="badge-subtle">Audio</span>
+            <div class="product-preview">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                <path
+                  d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+                />
+              </svg>
+            </div>
+            <h3>Acoustic Air ANC</h3>
+            <ul class="spec-list">
+              <li>Adaptive Noise Cancellation</li>
+              <li>40mm Bio-Cellulose Drivers</li>
+              <li>Lossless LDAC / aptX HD</li>
+              <li>42h Playback Reserve</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-block">
+              <span class="price-current">$229</span>
+              <span class="price-old">$279</span>
+            </div>
+            <a href="#comparison" class="btn-pill" style="width: 100%"
+              >View Details</a
+            >
+          </div>
+        </article>
+        <article class="card-product type-acc">
+          <div>
+            <span class="badge-subtle">Peripherals</span>
+            <div class="product-preview">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="6" width="20" height="12" rx="2" />
+                <path
+                  d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M10 14h4"
+                />
+              </svg>
+            </div>
+            <h3>Grid Pro 75 Keyboard</h3>
+            <ul class="spec-list">
+              <li>Gasket-Mounted Switches</li>
+              <li>Tri-Mode Wireless 2.4GHz</li>
+              <li>CNC Anodized Case</li>
+              <li>Hot-Swappable PCB</li>
+            </ul>
+          </div>
+          <div>
+            <div class="price-block">
+              <span class="price-current">$165</span>
+            </div>
+            <a href="#comparison" class="btn-pill" style="width: 100%"
+              >View Details</a
+            >
+          </div>
+        </article>
+      </div>
+      <section class="spotlight-section" id="featured-detail">
+        <div class="detail-layout">
+          <div class="detail-img-box">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="12" rx="1" />
+              <path d="M2 19h20M9 16v3m6-3v3" />
+            </svg>
+          </div>
+          <div>
+            <span class="caption">Flagship In Focus</span>
+            <h2 style="margin-top: 4px">AeroBook Pro 16</h2>
+            <div class="price-block" style="margin-top: var(--s-12)">
+              <span class="price-current" style="font-size: 32px">$1,449</span>
+              <span class="price-old" style="font-size: 18px">$1,699</span>
+              <span
+                class="card-badge"
+                style="position: static; margin-left: var(--s-8)"
+                >Save $250</span
+              >
+            </div>
+            <p style="color: var(--muted); margin-top: var(--s-8)">
+              Engineered for developers, architects, and data scientists. Houses
+              a continuous vapor chamber thermal system inside a 14.9mm
+              single-block aluminum chassis.
+            </p>
+            <div class="detail-specs-grid">
+              <div class="spec-box">
+                <div class="k">Processor</div>
+                <div class="v">Core Ultra 7 155H</div>
+              </div>
+              <div class="spec-box">
+                <div class="k">Graphics</div>
+                <div class="v">RTX 4060 8GB</div>
+              </div>
+              <div class="spec-box">
+                <div class="k">Display</div>
+                <div class="v">16" 3.2K 120Hz</div>
+              </div>
+              <div class="spec-box">
+                <div class="k">Battery</div>
+                <div class="v">92Whr Fast Charge</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: var(--s-12); align-items: center">
+              <a href="#catalog" class="btn-pill btn-primary">Add to Bag</a>
+              <a href="#comparison" class="btn-pill">Compare Specs</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="section-header" id="comparison">
+        <div>
+          <span class="caption">Side by Side</span>
+          <h2 style="font-size: 36px; margin-top: 4px">Device Matrix</h2>
+        </div>
+        <span class="caption">Updated Q4 2026</span>
+      </div>
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Product Model</th>
+              <th>Segment</th>
+              <th>Primary Silicon</th>
+              <th>Memory / Storage</th>
+              <th>Fast Charging</th>
+              <th>In Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-product-title">AeroBook Pro 16</td>
+              <td>Laptop</td>
+              <td>Intel Ultra 7 155H</td>
+              <td>32GB / 1TB SSD</td>
+              <td class="check-yes">&#10003; 100W USB-C</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td class="table-product-title">Zenith Studio 14</td>
+              <td>Laptop</td>
+              <td>Octa-Core M-Series</td>
+              <td>16GB / 512GB SSD</td>
+              <td class="check-yes">&#10003; 65W MagSafe</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td class="table-product-title">Vanguard Phone 5</td>
+              <td>Smartphone</td>
+              <td>Snapdragon 8 Gen 4</td>
+              <td>12GB / 256GB</td>
+              <td class="check-yes">&#10003; 80W Wired</td>
+              <td>Low Stock</td>
+            </tr>
+            <tr>
+              <td class="table-product-title">Chronos Watch S</td>
+              <td>Smart Device</td>
+              <td>Dual-Core S3 SoC</td>
+              <td>2GB / 32GB</td>
+              <td>5W Magnetic Dock</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td class="table-product-title">Acoustic Air ANC</td>
+              <td>Audio / Acc.</td>
+              <td>Quad-DSP Audio Chip</td>
+              <td>N/A (Firmware 4MB)</td>
+              <td class="check-yes">&#10003; 15W Qi Wireless</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <a href="#" class="brand-logo" style="margin-bottom: var(--s-8)">
+            <div class="brand-mark"></div>
+            PULSE HARDWARE
+          </a>
+          <p class="caption">Zero bloatware. High thermal headroom.</p>
+        </div>
+        <div style="display: flex; gap: var(--s-20)">
+          <a
+            href="#catalog"
+            class="caption"
+            style="text-decoration: none; color: var(--text)"
+            >Catalog</a
+          >
+          <a
+            href="#comparison"
+            class="caption"
+            style="text-decoration: none; color: var(--text)"
+            >Matrix</a
+          >
+          <a
+            href="#featured-detail"
+            class="caption"
+            style="text-decoration: none; color: var(--text)"
+            >Spotlight</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Athenaeum &mdash; First-Year Engineering Library Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #9047ff;
+        --primary-rgb: 144, 71, 255;
+        --primary-active: #7114ff;
+        --accent: #79499f;
+        --btn-color: #581c87;
+        --surface: #000000;
+        --elevated: #141414;
+        --card-bg: #141414;
+        --text: #ffffff;
+        --muted: #6b7280;
+        --border: #222228;
+        --border-light: #e2e4f0;
+        --status-success: #319f43;
+        --status-danger: #ff3b30;
+        --s-4: 4px;
+        --s-8: 8px;
+        --s-12: 12px;
+        --s-16: 16px;
+        --s-20: 20px;
+        --s-28: 28px;
+        --s-36: 36px;
+        --s-52: 52px;
+        --s-92: 92px;
+        --rounded-sm: 4px;
+        --rounded-md: 8px;
+        --rounded-lg: 12px;
+        --rounded-xl: 16px;
+        --rounded-xxl: 20px;
+        --rounded-full: 9999px;
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "IBM Plex Sans", -apple-system, sans-serif;
+        --lh-tight: 1;
+        --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+        --dur-fast: 0.13s;
+        --dur-med: 0.2s;
+        --dur-slow: 0.4s;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--surface);
+        color: var(--text);
+        font-family: var(--font-sans);
+        font-size: 12.8px;
+        font-weight: 500;
+        line-height: var(--lh-tight);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--text);
+        text-decoration: none;
+      }
+      h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(48px, 8vw, 102.4px);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(38px, 6vw, 102.4px);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      h3 {
+        font-family: var(--font-serif);
+        font-size: 34.13px;
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      h4 {
+        font-family: var(--font-serif);
+        font-size: 25.6px;
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+      }
+      .eyebrow {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--primary);
+      }
+      .container {
+        max-width: 1434px;
+        margin: 0 auto;
+        padding: 0 var(--s-20);
+      }
+      .navbar {
+        position: sticky;
+        top: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        z-index: 999999;
+        padding: var(--s-16) 0;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--s-20);
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--s-8);
+        font-family: var(--font-serif);
+        font-size: 20px;
+        letter-spacing: -0.02em;
+      }
+      .nav-brand-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--primary);
+        border-radius: var(--rounded-full);
+      }
+      .nav-links {
+        display: flex;
+        gap: var(--s-12);
+        list-style: none;
+      }
+      .nav-link {
+        padding: var(--s-8) var(--s-16);
+        border-radius: var(--rounded-full);
+        font-size: 12.8px;
+        color: var(--muted);
+        transition:
+          color var(--dur-fast) var(--ease-smooth),
+          background-color var(--dur-fast) var(--ease-smooth);
+      }
+      .nav-link:hover {
+        color: var(--text);
+        background: var(--elevated);
+      }
+      .btn-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--btn-color);
+        color: var(--text);
+        border-radius: var(--rounded-full);
+        padding: 17.07px 34.13px;
+        font-size: 12.8px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition:
+          background-color var(--dur-med) var(--ease-smooth),
+          transform var(--dur-med) var(--ease-smooth);
+      }
+      .btn-pill:hover {
+        background-color: var(--primary);
+        transform: translateY(-2px);
+      }
+      .btn-pill:active {
+        transform: translateY(0);
+        background-color: var(--primary-active);
+      }
+      .btn-pill-sm {
+        padding: var(--s-8) var(--s-20);
+        font-size: 12px;
+      }
+      .search-input {
+        background: var(--elevated);
+        border: 1px solid var(--border);
+        border-radius: var(--rounded-sm);
+        padding: var(--s-8) var(--s-12);
+        color: var(--text);
+        font-family: inherit;
+        font-size: 12.8px;
+        transition: border-color var(--dur-fast) var(--ease-smooth);
+        width: 100%;
+        max-width: 320px;
+      }
+      .search-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(144, 71, 255, 0.25);
+      }
+      .hero-section {
+        padding: var(--s-92) 0 var(--s-52);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: var(--s-36);
+        align-items: flex-end;
+      }
+      .hero-title span {
+        color: var(--primary);
+        font-style: italic;
+      }
+      .hero-meta-panel {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--rounded-lg);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-16);
+      }
+      .status-counter-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--s-12);
+      }
+      .counter-card {
+        border: 1px solid var(--border);
+        padding: var(--s-12);
+        border-radius: var(--rounded-md);
+        background: var(--surface);
+      }
+      .counter-num {
+        font-size: 24px;
+        font-family: var(--font-serif);
+        color: var(--text);
+      }
+      .counter-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        margin-top: 2px;
+      }
+      .filter-ctrl {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .filter-bar {
+        display: flex;
+        gap: var(--s-8);
+        padding: var(--s-28) 0;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+      }
+      .filter-chip {
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        padding: var(--s-8) var(--s-16);
+        border-radius: var(--rounded-full);
+        background: var(--elevated);
+        color: var(--muted);
+        border: 1px solid var(--border);
+        white-space: nowrap;
+        transition: all var(--dur-fast) var(--ease-smooth);
+        user-select: none;
+      }
+      .filter-chip:hover {
+        color: var(--text);
+        border-color: var(--primary);
+      }
+      #filter-all:checked ~ .filter-bar label[for="filter-all"],
+      #filter-math:checked ~ .filter-bar label[for="filter-math"],
+      #filter-cs:checked ~ .filter-bar label[for="filter-cs"],
+      #filter-phy:checked ~ .filter-bar label[for="filter-phy"],
+      #filter-soft:checked ~ .filter-bar label[for="filter-soft"] {
+        background: var(--primary);
+        color: var(--surface);
+        border-color: var(--primary);
+        font-weight: 700;
+      }
+      .catalog-section {
+        padding: var(--s-36) 0 var(--s-92);
+      }
+      .section-headline {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: var(--s-28);
+      }
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--s-16);
+      }
+      #filter-math:checked ~ .catalog-grid .card-book:not(.cat-math),
+      #filter-cs:checked ~ .catalog-grid .card-book:not(.cat-cs),
+      #filter-phy:checked ~ .catalog-grid .card-book:not(.cat-phy),
+      #filter-soft:checked ~ .catalog-grid .card-book:not(.cat-soft) {
+        display: none;
+      }
+      .card-book {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--rounded-lg);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color var(--dur-fast) var(--ease-smooth);
+        position: relative;
+      }
+      .card-book:hover {
+        border-color: var(--primary);
+      }
+      .book-cover {
+        width: 100%;
+        height: 180px;
+        border-radius: var(--rounded-md);
+        margin-bottom: var(--s-16);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: var(--s-16);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+      .cover-cs {
+        background: linear-gradient(135deg, #1b0933 0%, #350b5e 100%);
+      }
+      .cover-math {
+        background: linear-gradient(135deg, #091a2e 0%, #173252 100%);
+      }
+      .cover-phy {
+        background: linear-gradient(135deg, #241408 0%, #472611 100%);
+      }
+      .cover-soft {
+        background: linear-gradient(135deg, #181920 0%, #292a38 100%);
+      }
+      .cover-spine {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 10px;
+        background: rgba(0, 0, 0, 0.35);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .cover-code {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        align-self: flex-end;
+      }
+      .cover-title {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        line-height: 1.1;
+        color: var(--text);
+      }
+      .book-title {
+        font-size: 18px;
+        font-family: var(--font-serif);
+        margin-bottom: var(--s-4);
+        color: var(--text);
+      }
+      .book-author {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: var(--s-12);
+      }
+      .book-metadata {
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-8);
+        border-top: 1px solid var(--border);
+        padding-top: var(--s-12);
+        margin-top: var(--s-12);
+      }
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+      }
+      .meta-label {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .meta-val {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .chip-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 8px;
+        border-radius: var(--rounded-full);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .status-available {
+        background: rgba(49, 159, 67, 0.15);
+        color: var(--status-success);
+        border: 1px solid rgba(49, 159, 67, 0.3);
+      }
+      .status-reserved {
+        background: rgba(255, 59, 48, 0.15);
+        color: var(--status-danger);
+        border: 1px solid rgba(255, 59, 48, 0.3);
+      }
+      .status-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: var(--rounded-full);
+        background-color: currentColor;
+      }
+      .table-container {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--rounded-lg);
+        background: var(--card-bg);
+        margin-top: var(--s-28);
+      }
+      table.catalog-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 12.8px;
+      }
+      table.catalog-table th {
+        background: var(--elevated);
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: var(--s-16) var(--s-20);
+        border-bottom: 1px solid var(--border);
+      }
+      table.catalog-table td {
+        padding: var(--s-16) var(--s-20);
+        border-bottom: 1px solid var(--border);
+        vertical-align: middle;
+        color: var(--text);
+      }
+      table.catalog-table tr:last-child td {
+        border-bottom: none;
+      }
+      table.catalog-table tr:hover td {
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+      .rules-section {
+        padding: var(--s-52) 0 var(--s-92);
+        border-top: 1px solid var(--border);
+      }
+      .rules-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--s-20);
+        margin-top: var(--s-28);
+      }
+      .rule-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--rounded-lg);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-12);
+      }
+      .rule-number {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        color: var(--primary);
+      }
+      .rule-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .rule-desc {
+        font-size: 12.8px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: var(--s-36) 0;
+        background: var(--surface);
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--s-16);
+        flex-wrap: wrap;
+      }
+      @media (max-width: 1024px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .rules-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .rules-grid {
+          grid-template-columns: 1fr;
+        }
+        .status-counter-row {
+          grid-template-columns: 1fr;
+        }
+        .nav-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .search-input {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="#" class="nav-brand">
+          <div class="nav-brand-dot"></div>
+          Athenaeum Central
+        </a>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search by title, author, or ISBN..."
+        />
+        <ul class="nav-links">
+          <li><a href="#catalog" class="nav-link">Catalog</a></li>
+          <li><a href="#register" class="nav-link">Stack Table</a></li>
+          <li><a href="#rules" class="nav-link">Freshman Rules</a></li>
+        </ul>
+        <a href="#register" class="btn-pill btn-pill-sm">Borrow Pass</a>
+      </div>
+    </header>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Academic Session 2026&ndash;2027</span>
+            <h1 class="hero-title" style="margin-top: var(--s-8)">
+              Core readings for <span>first-year engineers.</span>
+            </h1>
+          </div>
+          <div class="hero-meta-panel">
+            <div>
+              <h4>Freshman Reserve Desk</h4>
+              <p style="color: var(--muted); margin-top: var(--s-4)">
+                Reserved copies for B.Tech Semester 1 & 2 foundational
+                curricula.
+              </p>
+            </div>
+            <div class="status-counter-row">
+              <div class="counter-card">
+                <div class="counter-num">1,840</div>
+                <div class="counter-label">Volumes In Stack</div>
+              </div>
+              <div class="counter-card">
+                <div class="counter-num">92%</div>
+                <div class="counter-label">Digital Access</div>
+              </div>
+              <div class="counter-card">
+                <div class="counter-num">03</div>
+                <div class="counter-label">Max Active Loans</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container" id="catalog">
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="filter-all"
+        class="filter-ctrl"
+        checked
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="filter-cs"
+        class="filter-ctrl"
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="filter-math"
+        class="filter-ctrl"
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="filter-phy"
+        class="filter-ctrl"
+      />
+      <input
+        type="radio"
+        name="catalog-filter"
+        id="filter-soft"
+        class="filter-ctrl"
+      />
+      <div class="filter-bar">
+        <label for="filter-all" class="filter-chip">All Categories (6)</label>
+        <label for="filter-cs" class="filter-chip">Computer Science</label>
+        <label for="filter-math" class="filter-chip">Mathematics</label>
+        <label for="filter-phy" class="filter-chip">Engineering Physics</label>
+        <label for="filter-soft" class="filter-chip">Writing & Seminar</label>
+      </div>
+      <section class="catalog-section">
+        <div class="section-headline">
+          <h3>Foundational Curricula Grid</h3>
+          <span class="eyebrow">Standard Shelf Collection</span>
+        </div>
+        <div class="catalog-grid">
+          <article class="card-book cat-cs">
+            <div>
+              <div class="book-cover cover-cs">
+                <div class="cover-spine"></div>
+                <span class="cover-code">CS-101</span>
+                <div class="cover-title">
+                  Structure & Interpretation of Programs
+                </div>
+              </div>
+              <div class="book-title">
+                Structure and Interpretation of Computer Programs
+              </div>
+              <div class="book-author">Harold Abelson, Gerald Jay Sussman</div>
+            </div>
+            <div>
+              <div class="book-metadata">
+                <div class="meta-row">
+                  <span class="meta-label">Shelf Loc.</span>
+                  <span class="meta-val">Bay 04 &bull; Tier B</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span>
+                  <span class="chip-status status-available"
+                    ><span class="status-dot"></span> Available (4)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="card-book cat-math">
+            <div>
+              <div class="book-cover cover-math">
+                <div class="cover-spine"></div>
+                <span class="cover-code">MA-111</span>
+                <div class="cover-title">Calculus & Linear Algebra Vol. I</div>
+              </div>
+              <div class="book-title">Calculus & Analytical Geometry</div>
+              <div class="book-author">George B. Thomas, Ross L. Finney</div>
+            </div>
+            <div>
+              <div class="book-metadata">
+                <div class="meta-row">
+                  <span class="meta-label">Shelf Loc.</span>
+                  <span class="meta-val">Bay 02 &bull; Tier A</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span>
+                  <span class="chip-status status-available"
+                    ><span class="status-dot"></span> Available (8)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="card-book cat-phy">
+            <div>
+              <div class="book-cover cover-phy">
+                <div class="cover-spine"></div>
+                <span class="cover-code">PH-102</span>
+                <div class="cover-title">Classical Mechanics & Waves</div>
+              </div>
+              <div class="book-title">
+                University Physics with Modern Physics
+              </div>
+              <div class="book-author">Hugh D. Young, Roger A. Freedman</div>
+            </div>
+            <div>
+              <div class="book-metadata">
+                <div class="meta-row">
+                  <span class="meta-label">Shelf Loc.</span>
+                  <span class="meta-val">Bay 09 &bull; Tier C</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span>
+                  <span class="chip-status status-reserved"
+                    ><span class="status-dot"></span> Reserved (0)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="card-book cat-cs">
+            <div>
+              <div class="book-cover cover-cs">
+                <div class="cover-spine"></div>
+                <span class="cover-code">CS-102</span>
+                <div class="cover-title">Introduction to Algorithms (CLRS)</div>
+              </div>
+              <div class="book-title">Introduction to Algorithms</div>
+              <div class="book-author">Cormen, Leiserson, Rivest, Stein</div>
+            </div>
+            <div>
+              <div class="book-metadata">
+                <div class="meta-row">
+                  <span class="meta-label">Shelf Loc.</span>
+                  <span class="meta-val">Bay 04 &bull; Tier D</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span>
+                  <span class="chip-status status-available"
+                    ><span class="status-dot"></span> Available (2)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="card-book cat-math">
+            <div>
+              <div class="book-cover cover-math">
+                <div class="cover-spine"></div>
+                <span class="cover-code">MA-112</span>
+                <div class="cover-title">Discrete Mathematics Applications</div>
+              </div>
+              <div class="book-title">
+                Discrete Mathematics and Its Applications
+              </div>
+              <div class="book-author">Kenneth H. Rosen</div>
+            </div>
+            <div>
+              <div class="book-metadata">
+                <div class="meta-row">
+                  <span class="meta-label">Shelf Loc.</span>
+                  <span class="meta-val">Bay 03 &bull; Tier B</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span>
+                  <span class="chip-status status-available"
+                    ><span class="status-dot"></span> Available (6)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="card-book cat-soft">
+            <div>
+              <div class="book-cover cover-soft">
+                <div class="cover-spine"></div>
+                <span class="cover-code">EN-105</span>
+                <div class="cover-title">Technical Communication Handbook</div>
+              </div>
+              <div class="book-title">
+                The Elements of Style & Scientific Reports
+              </div>
+              <div class="book-author">William Strunk Jr., E.B. White</div>
+            </div>
+            <div>
+              <div class="book-metadata">
+                <div class="meta-row">
+                  <span class="meta-label">Shelf Loc.</span>
+                  <span class="meta-val">Bay 01 &bull; Tier A</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status</span>
+                  <span class="chip-status status-reserved"
+                    ><span class="status-dot"></span> Reserved (0)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div id="register" style="margin-top: var(--s-52)">
+          <div class="section-headline">
+            <h3>Stack Registry Register</h3>
+            <span class="eyebrow">Real-time Physical Inventory</span>
+          </div>
+          <div class="table-container">
+            <table class="catalog-table">
+              <thead>
+                <tr>
+                  <th>Call Number</th>
+                  <th>Title & Edition</th>
+                  <th>Author</th>
+                  <th>Discipline</th>
+                  <th>Format</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>QA76.6 .A255</td>
+                  <td>
+                    Structure & Interpretation of Computer Programs (2nd Ed.)
+                  </td>
+                  <td>Abelson & Sussman</td>
+                  <td>Computer Science</td>
+                  <td>Hardcover</td>
+                  <td>
+                    <span class="chip-status status-available"
+                      ><span class="status-dot"></span> On Shelf</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>QA303 .T42</td>
+                  <td>Calculus and Analytic Geometry (14th Ed.)</td>
+                  <td>Thomas & Finney</td>
+                  <td>Mathematics</td>
+                  <td>Paperback</td>
+                  <td>
+                    <span class="chip-status status-available"
+                      ><span class="status-dot"></span> On Shelf</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>QC21.3 .Y68</td>
+                  <td>University Physics with Modern Physics (15th Ed.)</td>
+                  <td>Young & Freedman</td>
+                  <td>Physics</td>
+                  <td>Reference Desk</td>
+                  <td>
+                    <span class="chip-status status-reserved"
+                      ><span class="status-dot"></span> Checked Out</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>QA76.9.A43 C67</td>
+                  <td>Introduction to Algorithms (4th Ed.)</td>
+                  <td>CLRS</td>
+                  <td>Algorithms</td>
+                  <td>Hardcover</td>
+                  <td>
+                    <span class="chip-status status-available"
+                      ><span class="status-dot"></span> On Shelf</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>PE1408 .S772</td>
+                  <td>The Elements of Style (4th Ed.)</td>
+                  <td>Strunk & White</td>
+                  <td>Communication</td>
+                  <td>Pocket Folio</td>
+                  <td>
+                    <span class="chip-status status-reserved"
+                      ><span class="status-dot"></span> Due Nov 18</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="rules-section" id="rules">
+      <div class="container">
+        <span class="eyebrow">Freshman Orientation Directives</span>
+        <h2 style="margin-top: var(--s-8)">General Stacks Code</h2>
+
+        <div class="rules-grid">
+          <div class="rule-card">
+            <div class="rule-number">01</div>
+            <div class="rule-title">Loan Limits & Duration</div>
+            <div class="rule-desc">
+              First-year undergraduates may hold up to 3 core curriculum books
+              for 14 calendar days. General fiction and journals are restricted
+              to 7-day borrowing.
+            </div>
+          </div>
+          <div class="rule-card">
+            <div class="rule-number">02</div>
+            <div class="rule-title">Reserve Desk Overnights</div>
+            <div class="rule-desc">
+              Volumes bearing red reserve stickers cannot leave reading halls
+              prior to 20:00. Overnight checkouts must be returned before 09:00
+              the following morning.
+            </div>
+          </div>
+          <div class="rule-card">
+            <div class="rule-number">03</div>
+            <div class="rule-title">Quiet Zones & Study Bays</div>
+            <div class="rule-desc">
+              Level 2 and Level 3 East are designated silent study zones. Cell
+              phones, audio speaker reproduction, and collaborative discussion
+              must be kept to ground floor pods.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="nav-brand" style="margin-bottom: var(--s-4)">
+            <div class="nav-brand-dot"></div>
+            Athenaeum Central Stacks
+          </div>
+          <p style="color: var(--muted); font-size: 11px">
+            University Division of Libraries &amp; Scholarly Resources &bull; AY
+            2026&ndash;2027
+          </p>
+        </div>
+
+        <div style="display: flex; gap: var(--s-16)">
+          <a href="#catalog" class="eyebrow" style="color: var(--muted)"
+            >Catalog Search</a
+          >
+          <a href="#register" class="eyebrow" style="color: var(--muted)"
+            >Desk Status</a
+          >
+          <a href="#rules" class="eyebrow" style="color: var(--muted)"
+            >Code of Conduct</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
